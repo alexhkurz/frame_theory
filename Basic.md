@@ -22,3 +22,5 @@
 
 **Lemma**: In a frame, $\sqcap$ absorbs $\sqcup$.
 
+**Lemma**: ... to be continued ...
+
