@@ -3,6 +3,7 @@ Authors: Talitha Holcombe, Alexander Kurz
 -/
 
 import Mathlib.Data.Set.Operations
+import Mathlib.Order.CompleteLattice
 
 /-!
 # Frames
@@ -64,8 +65,14 @@ open Frame
 theorem Frame.sup_lub {α : Type u} [Frame α] (x : α) (S : Set α) (h : ∀ y ∈ S, y ⊑ x) : sup S ⊑ x := by
   sorry
 
-theorem Frame.absorb1 {α : Type u} [Frame α] (x y : α) : x ⊔ (x ⊓ y) = x := by
+theorem Frame.absorbJoin {α : Type u} [Frame α] (x y : α) : x ⊔ (x ⊓ y) = x := by
   sorry
 
-theorem Frame.absorb2 {α : Type u} [Frame α] (x y : α) : x ⊓ (x ⊔ y) = x := by
+theorem Frame.absorbMeet {α : Type u} [Frame α] (x y : α) : x ⊓ (x ⊔ y) = x := by
+  sorry
+
+theorem Frame.distJoin {α : Type u} [Frame α] (x y z : α) : x ⊔ (y ⊓ z) = (x ⊔ y) ⊓ (x ⊔ z)  := by
+  sorry
+
+instance Frame.completeLattice {α : Type u} [Frame α] : CompleteLattice α := by
   sorry
