@@ -53,6 +53,19 @@ class Frame (α : Type u) extends BoundedMeetSemiLattice α where
   dist : ∀ (x : α) (S : Set α),
     x ⊓ sup S = sup (Set.image (fun y => x ⊓ y) S)
 
+def Frame.bSup {α : Type u} [Frame α] (x y : α) : α :=
+  Frame.sup {x, y}
+
+notation "⊥" => Frame.sup ∅
+infixl:70 " ⊔ " => Frame.bSup
+
 open Frame
+
 theorem Frame.sup_lub {α : Type u} [Frame α] (x : α) (S : Set α) (h : ∀ y ∈ S, y ⊑ x) : sup S ⊑ x := by
+  sorry
+
+theorem Frame.absorb1 {α : Type u} [Frame α] (x y : α) : x ⊔ (x ⊓ y) = x := by
+  sorry
+
+theorem Frame.absorb2 {α : Type u} [Frame α] (x y : α) : x ⊓ (x ⊔ y) = x := by
   sorry
