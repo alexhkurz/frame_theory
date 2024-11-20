@@ -28,13 +28,31 @@ open BoundedMeetSemiLattice
 example {α : Type u} [BoundedMeetSemiLattice α] (a b : α) : a ⊓ b = b ⊓ a := by
   exact meet_comm a b
 
-def le {α : Type u} [BoundedMeetSemiLattice α] (x y : α) : Prop :=
+def BoundedMeetSemiLattice.leq {α : Type u} [BoundedMeetSemiLattice α] (x y : α) : Prop :=
   x ⊓ y = x
 
-notation:50 x " ≤ " y => BoundedMeetSemiLattice.le x y
+notation:50 x " ⊑ " y => BoundedMeetSemiLattice.leq x y
+
+theorem BoundedMeetSemiLattice.leq_refl {α : Type u} [BoundedMeetSemiLattice α] (x : α) : x ⊑ x := by
+  have h : x ⊓ x = x := meet_idem x
+  exact h
+
+theorem BoundedMeetSemiLattice.leq_antisymm {α : Type u} [BoundedMeetSemiLattice α] {x y : α} (h1 : x ⊑ y) (h2 : y ⊑ x) : x = y := by
+  sorry
+
+theorem BoundedMeetSemiLattice.leq_trans {α : Type u} [BoundedMeetSemiLattice α] {x y z : α} (h1 : x ⊑ y) (h2 : y ⊑ z) : x ⊑ z := by
+  sorry
+
+/-!
+## Frames
+-/
 
 class Frame (α : Type u) extends BoundedMeetSemiLattice α where
   sup : Set α → α
   sup_insert : ∀ (a : α) (S : Set α), sup (Set.insert a S) = a ⊓ sup S
   dist : ∀ (x : α) (S : Set α),
     x ⊓ sup S = sup (Set.image (fun y => x ⊓ y) S)
+
+open Frame
+theorem Frame.sup_lub {α : Type u} [Frame α] (x : α) (S : Set α) (h : ∀ y ∈ S, y ⊑ x) : sup S ⊑ x := by
+  sorry
