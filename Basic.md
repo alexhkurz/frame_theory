@@ -8,7 +8,7 @@
 
 **Lemma**: In a bounded meet semi-lattice, $\sqsubseteq$ is a partial order.
 
-*Proof*: 
+*Proof*: Reflexivity follows from idempotence. Antisymmetry follows from commutativity. Transitivity follows from associativity.
 
 ## Frames
 
