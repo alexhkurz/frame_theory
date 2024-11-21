@@ -39,10 +39,15 @@ theorem BoundedMeetSemiLattice.leq_refl {α : Type u} [BoundedMeetSemiLattice α
   exact h
 
 theorem BoundedMeetSemiLattice.leq_antisymm {α : Type u} [BoundedMeetSemiLattice α] {x y : α} (h1 : x ⊑ y) (h2 : y ⊑ x) : x = y := by
-  sorry
+    have h3 : x ⊓ y = y ⊓ x := meet_comm x y
+    rw [h1, h2] at h3
+    exact h3
 
 theorem BoundedMeetSemiLattice.leq_trans {α : Type u} [BoundedMeetSemiLattice α] {x y z : α} (h1 : x ⊑ y) (h2 : y ⊑ z) : x ⊑ z := by
-  sorry
+  have h3 := meet_assoc x y z
+  rw [h1, h2] at h3
+  rw [BoundedMeetSemiLattice.leq, h3]
+  exact h1
 
 /-!
 ## Frames
