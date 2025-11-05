@@ -24,54 +24,17 @@ variable (D : Set α)
 
 
 
-
-#check A.str.bot
-
-#check FrameHom A B
-
-variable (f : FrameHom A B)
-
-#check f.cancel_left
-
-
-/-
-theorem Frame.distJoin {α : Type u} [Frame α] (x y z : α) : x ⊔ (y ⊓ z) = (x ⊔ y) ⊓ (x ⊔ z)  := by
-  sorry
-
-theorem Frame.sup_lub {α : Type u} [Frame α] (x : α) (S : Set α) (h : ∀ y ∈ S, y ⊑ x) : sup S ⊑ x := by
-  sorry
--/
-
-/-
-instance hasForgetToLat : HasForget₂ Frm Lat where
-  forget₂.obj X := .of X
-  forget₂.map f := Lat.ofHom f.hom
--/
-
-#check Set
--- instance hasForgetToSet : HasForget₂ (Frm.{u}) (Set.{u}) where
---   sorry
-
--- instance hasForgetSetToSet : HasForget₂ Set Set where
-
-#check CategoryTheory.forget₂ Frm Lat
-
-#check CategoryTheory.forget Frm
-
-
-universe v
-
-
 /-
 * Proof for Monotonicity in frame homomorphisms
 -/
 
-variable {L M : Type*} [Frame L] [Frame M]
+-- variable {L M : Type*} [Frame L] [Frame M]
 
--- `f : L → M` means: frame_hom L M
-variable (f : L → M)
+-- -- `f : L → M` means: frame_hom L M
+-- variable (f : L → M)
 
--- -- 1. A frame hom is monotone
+-- A frame hom is monotone
+-- FrameHom.monotone? or framehom_monotone(?) because not extending FrameHom
 theorem FrameHom.monotone (f : FrameHom A B) :
     Monotone f := by
   intro x y h
@@ -83,7 +46,16 @@ theorem FrameHom.monotone (f : FrameHom A B) :
   -- apply f to both sides
   have := congrArg f hx
   -- simplify with map_inf
-  -- simpa using (this ▸ inf_le_right (f x) (f y))
   simpa using this
 
 -- simpa checks if simplified result is the goal. if yes, closes goal
+
+
+
+-- A frame hom preserves ⊥
+theorem frameHom_map_bot (f : FrameHom A B) : f ⊥ = (⊥ : B) := by
+  simp
+
+-- frame hom preserves finite meet
+lemma frameHom_map_inf (a b : A) (f : FrameHom A B): f (a ⊓ b) = f a ⊓ f b := by
+  simp
