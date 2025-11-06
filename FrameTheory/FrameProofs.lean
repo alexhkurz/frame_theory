@@ -35,8 +35,7 @@ variable (D : Set α)
 
 -- A frame hom is monotone
 -- FrameHom.monotone? or framehom_monotone(?) because not extending FrameHom
-theorem FrameHom.monotone (f : FrameHom A B) :
-    Monotone f := by
+theorem FrameHom.monotone (f : FrameHom A B) : Monotone f := by
   intro x y h
   -- we use x = x ⊓ y because x ≤ y in a frame
   have hx : x = x ⊓ y := by

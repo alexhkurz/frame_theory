@@ -49,6 +49,15 @@ theorem BoundedMeetSemiLattice.leq_trans {α : Type u} [BoundedMeetSemiLattice �
   rw [BoundedMeetSemiLattice.leq, h3]
   exact h1
 
+-- I want to say that the order is a partial order
+
+instance BoundedMeetSemiLattice.partialOrder {α : Type u} [BoundedMeetSemiLattice α] :
+    PartialOrder α where
+  le := BoundedMeetSemiLattice.leq
+  le_refl := BoundedMeetSemiLattice.leq_refl
+  le_antisymm := fun a b => BoundedMeetSemiLattice.leq_antisymm
+  le_trans := fun a b c => BoundedMeetSemiLattice.leq_trans
+
 /-!
 ## Frames
 -/
